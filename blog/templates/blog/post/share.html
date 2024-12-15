@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Form{% endblock title %}
+
+{% block content %}
+    <h1 class="text-purple-500 text-3xl font-mono">Share this post</h1>
+    {% if send %}
+        <p class="text-green-400 text-xl">Post shared successfully!</p>
+    {% else %}
+        <h4>Share "{{post.title}} by e-mail"</h4>
+        <form method="post" class="mt-4">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn" type="submit">Share</button>
+        </form>
+    {% endif %}
+{% endblock content %}

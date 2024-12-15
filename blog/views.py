@@ -1,8 +1,11 @@
+from django.core.mail import send_mail
 from django.shortcuts import render, get_object_or_404
 from .models import Post
 from django.http import Http404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .forms import EmailPostForm
+from decouple import config
+
 # Create your views here.
 
 def post_list(request):
@@ -24,11 +27,19 @@ def post_detail(request, year, month, day, post):
 
 def post_share(request, post_id):
     post = get_object_or_404(Post, id=post_id, status=Post.Status.PUBLISH)
+    send = False
     if request.method == 'POST':
+        # Form was submitted
         form = EmailPostForm(request.POST)
         if form.is_valid():
+            # Form fields passed validation
             cd = form.cleaned_data
-            # send email
-        else:
-            form = EmailPostForm()
-    return render(request, 'blog/post/share.html', {'post': post, 'form': form})
+            post_url = request.build_absolute_uri(post.get_absolute_url())
+            subject = f"{cd['name']} recommends you read {post.title}"
+            message = f"Read {post.title} at {post_url}\n\n{cd['name']}\'s comments: {cd['comments']}"
+            email_host_user = config('EMAIL_HOST_USER')
+            send_mail(subject, message, email_host_user, [cd['to']])
+            send = True
+    else:
+        form = EmailPostForm()
+    return render(request, 'blog/post/share.html', {'post': post, 'form': form, 'send': send})
