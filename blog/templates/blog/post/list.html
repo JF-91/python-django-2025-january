@@ -1,0 +1,18 @@
+{% extends "base.html" %} {% block title %}Post list{% endblock title %}
+{%block content %}
+    <h1 class="text-4xl font-bold mb-12">Blog</h1>
+    {% for post in posts %}
+    <div>
+        <div class="text-sm text-gray-500">
+            {{ post.created }}
+        </div>
+    </div>
+    <div class="mb-6 border-b border-gray-200">
+        <h2 class="text-2xl font-bold">
+        <a class="link" href="{{post.get_absolute_url}}"> {{ post.title }} </a>
+        </h2>
+        <p class="text-lg font-mono text-blue-400">{{ post.body }}</p>
+    </div>
+    {% endfor %} 
+    {% include "blog/post/pagination.html" %}
+{% endblock %}

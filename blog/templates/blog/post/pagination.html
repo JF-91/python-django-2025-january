@@ -1,0 +1,16 @@
+<div class="join">
+    <span>
+       {% if page.has_previous %}
+            <a class="join-item btn btn-outline" href="?page={{page.Previous_page_number}}">Previous</a>
+        {% endif %}
+
+        <span class="join-item btn btn-square">
+            Page {{page.number}} of {{page.paginator.num_pages}}
+        </span>
+        
+        {% if page.has_next %}
+            <a class="join-item btn btn-outline" href="?page={{page.next_page_number}}">Next</a>
+        {% endif %}
+    </span>
+</div>
+
