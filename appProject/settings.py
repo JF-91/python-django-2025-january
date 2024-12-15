@@ -36,6 +36,8 @@ INSTALLED_APPS = [
     'tailwind',
     'theme',
     'django_browser_reload',
+    'ckeditor',
+    'ckeditor_uploader',
     'home',
     'product',
     'blog',
@@ -130,6 +132,7 @@ INTERNAL_IPS = [
     "127.0.0.1",
 ]
 
+# DaisyUI settings
 DAISY_SETTINGS = {
     'SITE_TITLE': 'Django Admin',  # The title of the site 
     'SITE_HEADER': 'Administration',  # Header text displayed in the admin panel
@@ -153,4 +156,22 @@ DAISY_SETTINGS = {
         },
     },
 }
+
+
+# CKEditor settings
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        'height': 300,
+        'width': 'auto',
+        'toolbar_Custom': [
+            ['Bold', 'Italic', 'Underline'],
+            ['NumberedList', 'BulletedList'],
+            ['Link', 'Unlink'],
+            ['RemoveFormat', 'Source']
+        ],
+    },
+}
+
+CKEDITOR_UPLOAD_PATH = 'media/' 
 
