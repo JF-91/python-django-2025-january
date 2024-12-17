@@ -12,6 +12,7 @@ urlpatterns = [
     path('ckeditor/', include(ckeditor_urls)),
     path('', home, name='home'),
     path('blog/', include('blog.urls'), name='blog'),
+    path('page/', include('page.urls'), name='page'),
    
 ]
 

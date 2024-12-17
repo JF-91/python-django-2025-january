@@ -5,3 +5,4 @@ python -m pip install django-tailwind
 pip install django-daisy
 python -m pip install Pillow
 pip install django-ckeditor
+pip install django-tinymce
