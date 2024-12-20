@@ -6,3 +6,5 @@ pip install django-daisy
 python -m pip install Pillow
 pip install django-ckeditor
 pip install django-tinymce
+pip install django-polymorphic
+pip install django-admin-sortable2
